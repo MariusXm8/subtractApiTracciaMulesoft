@@ -1,0 +1,16 @@
+#%RAML 1.0
+title: Traccia Post Subtract 
+
+/Subtract:
+  post:
+    body:
+      application/json:
+        example:
+          input: !include /esempi/exampleSottrazione.raml
+
+    responses:
+      201:
+        body:
+          application/json:
+            example:
+              output: !include /esempi/exampleOutputSottrazione.raml

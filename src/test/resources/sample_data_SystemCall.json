@@ -1,0 +1,41 @@
+[ 
+   {
+        "ID": 3,
+        "code": "ffee0192",
+        "price": 300,
+        "departureDate": "2016-01-20T00:00:00",
+        "origin": "MUA",
+        "destination": "LAX",
+        "emptySeats": 0,
+        "plane": {
+            "type": "Boeing 777",
+            "totalSeats": 300
+        }
+    },
+    {
+        "ID": 4,
+        "code": "rree1000",
+        "price": 200,
+        "departureDate": "2016-01-20T00:00:00",
+        "origin": "MUA",
+        "destination": "CLE",
+        "emptySeats": 5,
+        "plane": {
+            "type": "Boeing 737",
+            "totalSeats": 150
+        }
+    },
+    {
+        "ID": 5,
+        "code": "rree1093",
+        "price": 142,
+        "departureDate": "2016-02-11T00:00:00",
+        "origin": "MUA",
+        "destination": "SFO",
+        "emptySeats": 1,
+        "plane": {
+            "type": "Boeing 737",
+            "totalSeats": 150
+        }
+    }
+]

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:wsc="http://www.mulesoft.org/schema/mule/wsc" xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd
+http://www.mulesoft.org/schema/mule/wsc http://www.mulesoft.org/schema/mule/wsc/current/mule-wsc.xsd">
+	<flow name="MainFlow" doc:id="5253f015-fb79-4c12-8943-cca21a893987" >
+		<set-variable value='#[payload]' doc:name="Prendo il Body" doc:id="cd4d4aa0-e364-4b05-8350-ee3e663d340b" variableName="int"/>
+		<ee:transform doc:name="payload to Xml" doc:id="a740cc22-a51f-42b8-93c2-80807beaf6f2" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/xml
+ns ns0 http://tempuri.org/
+---
+{
+	ns0#Subtract: {
+		ns0#intA: vars.int[0] default 0 ,
+		ns0#intB: vars.int[1] default 0
+	}
+}]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+		<wsc:consume doc:name="Consume" doc:id="1433efc2-f7e3-450b-8e33-e220f4b217ed" config-ref="Web_Service_Consumer_Config" operation="Subtract"/>
+		<ee:transform doc:name="xml to json" doc:id="71d20236-562a-4d76-811a-bfba094e1a85" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0ns ns0 http://tempuri.org/
+
+output application/json
+---
+payload.body.ns0#SubtractResponse.ns0#SubtractResult]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+</mule>
